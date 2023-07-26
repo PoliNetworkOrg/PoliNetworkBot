@@ -22,14 +22,15 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: polinetwork/${{ matrix.bots }}:${{ github.sha }}
+          images: |
+            polinetwork/${{ matrix.bots }}
           tags: |
-            type=semver,pattern={{version}}
+            type=sha
 
       - name: Build
         uses: docker/build-push-action@v3
         with:
-          push: ${{ github.ref != 'refs/heads/dev' && github.ref != 'refs/heads/main'}}
+          push: ${{ github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main'}}
           context: ${{ matrix.bots }}
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
