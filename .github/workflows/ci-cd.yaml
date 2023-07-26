@@ -47,7 +47,7 @@ jobs:
           - PoliNetworkBot
     uses: ./.github/workflows/cd-slave.yaml
     with:
-      dockerhub_repository: ${{needs.build.outputs.docker_image_tag}}
+      docker_image_tag: ${{needs.build.outputs.docker_image_tag}}
       app: newbot-dev
     secrets:
       CD_DEPLOY_KEY: ${{ secrets.CD_DEPLOY_KEY }}
@@ -63,7 +63,7 @@ jobs:
           - PoliNetworkBot
     uses: ./.github/workflows/cd-slave.yaml
     with:
-      dockerhub_repository: ${{needs.build.outputs.docker_image_tag}}
+      docker_image_tag: ${{needs.build.outputs.docker_image_tag}}
       app: newbot-prod
     secrets:
       CD_DEPLOY_KEY: ${{ secrets.CD_DEPLOY_KEY }}

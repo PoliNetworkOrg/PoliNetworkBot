@@ -1,12 +1,15 @@
 on:
   workflow_call:
     inputs:
-      dockerhub_repository:
+      docker_image_tag:
         required: true
         type: string
       app:
         required: true
         type: string 
+      environment:
+        required: true
+        type: string
     secrets:
       CD_DEPLOY_KEY:
         required: true
@@ -24,7 +27,7 @@ jobs:
       - name: Update Manifest File
         uses: mikefarah/yq@master
         with:
-          cmd: yq -i '.spec|=select(.selector.matchLabels.app=="${{ inputs.app }}").template.spec.containers[0].image = "polinetwork/${{ inputs.dockerhub_repository }}:${{ github.sha }}"' polinetwork/${{ inputs.dockerhub_repository }}/deployment.yaml
+          cmd: yq -i '.spec|=select(.selector.matchLabels.app=="${{ inputs.app }}-${{ inputs.environment }}").template.spec.containers[0].image = "${{ inputs.docker_image_tag }}"' ${{ inputs.environment }}/${{ inputs.app }}/deployment.yaml
 
       - name: Commit changes in manifest to repo
         run: | 
