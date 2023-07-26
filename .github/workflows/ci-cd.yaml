@@ -1,0 +1,69 @@
+---
+name: Publish Docker image
+on: push
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        bots:
+          - PoliNetworkBot
+    name: Docker Build
+    runs-on: ubuntu-latest
+    outputs:
+      docker_image_tag: ${{ steps.meta.outputs.tags }}
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: polinetwork/${{ matrix.bots }}:${{ github.sha }}
+          tags: |
+            type=semver,pattern={{version}}
+
+      - name: Build
+        uses: docker/build-push-action@v3
+        with:
+          push: ${{ github.ref != 'refs/heads/dev' && github.ref != 'refs/heads/main'}}
+          context: ${{ matrix.bots }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  Update-K8s-Manifests-Dev:
+    name: Update K8s Deployment Manifest with Image Version
+    needs: build
+    if: ${{ github.ref == 'refs/heads/dev'}}
+    strategy:
+      fail-fast: false
+      matrix:
+        bots:
+          - PoliNetworkBot
+    uses: ./.github/workflows/cd-slave.yaml
+    with:
+      dockerhub_repository: ${{needs.build.outputs.docker_image_tag}}
+      app: newbot-dev
+    secrets:
+      CD_DEPLOY_KEY: ${{ secrets.CD_DEPLOY_KEY }}
+
+  Update-K8s-Manifests-Prod:
+    name: Update K8s Deployment Manifest with Image Version
+    needs: build
+    if: ${{github.ref == 'refs/heads/main'}}
+    strategy:
+      fail-fast: false
+      matrix:
+        bots:
+          - PoliNetworkBot
+    uses: ./.github/workflows/cd-slave.yaml
+    with:
+      dockerhub_repository: ${{needs.build.outputs.docker_image_tag}}
+      app: newbot-prod
+    secrets:
+      CD_DEPLOY_KEY: ${{ secrets.CD_DEPLOY_KEY }}
