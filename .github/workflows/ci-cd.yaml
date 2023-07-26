@@ -48,7 +48,8 @@ jobs:
     uses: ./.github/workflows/cd-slave.yaml
     with:
       docker_image_tag: ${{needs.build.outputs.docker_image_tag}}
-      app: newbot-dev
+      app: newbot
+      environment: dev
     secrets:
       CD_DEPLOY_KEY: ${{ secrets.CD_DEPLOY_KEY }}
 
@@ -64,6 +65,7 @@ jobs:
     uses: ./.github/workflows/cd-slave.yaml
     with:
       docker_image_tag: ${{needs.build.outputs.docker_image_tag}}
-      app: newbot-prod
+      app: newbot
+      environment: prod
     secrets:
       CD_DEPLOY_KEY: ${{ secrets.CD_DEPLOY_KEY }}
