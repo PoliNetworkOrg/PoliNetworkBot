@@ -27,8 +27,8 @@ jobs:
           images: |
             polinetwork/polinetworkbot
           tags: |
-            type=raw,value=${{ github.ref_name }}:latest
-            type=sha,format=long
+            type=raw,value=${{ matrix.bots }}Bot-${{ github.ref_name }}:latest
+            type=sha,format=long,prefix=${{ matrix.bots }}Bot-${{ github.ref_name }}
 
       - name: Log in to Docker Hub
         if: ${{ github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main'}}
