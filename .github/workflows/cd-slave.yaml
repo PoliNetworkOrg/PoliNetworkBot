@@ -24,6 +24,10 @@ jobs:
           repository: PoliNetworkOrg/polinetwork-cd
           ssh-key: ${{ secrets.CD_DEPLOY_KEY }}
 
+      - name: Print Docker Image Tag
+        run: |
+          echo "Docker Image Tag: ${{ inputs.docker_image_tag }}"
+
       - name: Update Manifest File
         uses: mikefarah/yq@master
         with:
