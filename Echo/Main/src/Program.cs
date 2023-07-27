@@ -7,7 +7,7 @@ using Telegram.Bot.Types;
 
 Console.WriteLine("Hello, starting Echo bot!");
 
-var telegramBotWrapper = new TelegramBotWrapper("token");
+var telegramBotWrapper = new TelegramBot("token");
 
 telegramBotWrapper.Start(HandleUpdateAsync);
 while (true)
@@ -20,6 +20,6 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
     // Only process Message updates: https://core.telegram.org/bots/api#message
     if (update.Message is not { } message)
         return;
-    
+
     await Echo.EchoMethod(message, botClient, cancellationToken);
 }

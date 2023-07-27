@@ -7,7 +7,7 @@ jobs:
       fail-fast: false
       matrix:
         bots:
-          - PoliNetworkBot
+          - Echo
     name: Docker Build
     runs-on: ubuntu-latest
     outputs:
@@ -45,7 +45,7 @@ jobs:
       fail-fast: false
       matrix:
         bots:
-          - PoliNetworkBot
+          - Echo
     uses: ./.github/workflows/cd-slave.yaml
     with:
       docker_image_tag: ${{needs.build.outputs.docker_image_tag}}
@@ -62,7 +62,7 @@ jobs:
       fail-fast: false
       matrix:
         bots:
-          - PoliNetworkBot
+          - Echo
     uses: ./.github/workflows/cd-slave.yaml
     with:
       docker_image_tag: ${{needs.build.outputs.docker_image_tag}}
