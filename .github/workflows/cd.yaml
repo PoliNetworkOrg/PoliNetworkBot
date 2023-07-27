@@ -42,7 +42,8 @@ jobs:
         with:
           push: ${{ github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main'}}
           context: ${{ matrix.bots }}/Main
-          tags: polinetwork/polinetworkbot:${{github.sha}}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
   Update-K8s-Manifests-Dev:
     name: Update K8s Deployment Manifest with Image Version
