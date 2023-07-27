@@ -35,8 +35,7 @@ jobs:
           context: ${{ matrix.bots }}/Main
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: polinetwork/polinetworkbot:${{github.sha}}
 
   Update-K8s-Manifests-Dev:
     name: Update K8s Deployment Manifest with Image Version
