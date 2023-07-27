@@ -23,7 +23,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            polinetwork/polinetworkbot/${{ matrix.bots }}
+            polinetwork/polinetworkbot
           tags: |
             type=raw,value=${{ github.ref_name }}:latest
             type=sha,format=long
