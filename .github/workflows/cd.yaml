@@ -23,12 +23,10 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            polinetwork/polinetworkbot
+            polinetwork/polinetworkbot/${{ matrix.bots }}
           tags: |
-            type=raw,value=${{ matrix.bots }}-${{ github.ref_name }}:latest
-            type=sha,prefix=${{ matrix.bots }}-${{ github.ref_name }}:,suffix=,format=long
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=${{ github.ref_name }}:latest
+            type=sha,format=long
 
       - name: Build
         uses: docker/build-push-action@v3
