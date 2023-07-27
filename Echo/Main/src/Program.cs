@@ -1,2 +1,12 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿
+
+using PoliNetwork.Telegram.Objects;
+
+Console.WriteLine("Hello, starting Echo bot!");
+
+var telegramBotWrapper = new TelegramBotWrapper("token");
+
+while (true)
+{
+    telegramBotWrapper.CheckUpdatesAndRun();
+}
