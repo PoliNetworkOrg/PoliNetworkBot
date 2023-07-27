@@ -23,9 +23,10 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            polinetwork/TelegramBot/${{ matrix.bots }}
+            polinetwork/polinetworkbot
           tags: |
-            type=sha,prefix=${{ github.ref_name }}-,suffix=,format=long
+            type=raw,value=${{ matrix.bots }}-${{ github.ref_name }}:latest
+            type=sha,prefix=${{ matrix.bots }}-${{ github.ref_name }}:,suffix=,format=long
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
 
