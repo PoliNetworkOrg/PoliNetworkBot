@@ -26,7 +26,6 @@ jobs:
             polinetwork/TelegramBot/${{ matrix.bots }}
           tags: |
             type=sha,prefix=${{ github.ref_name }}-,suffix=,format=long
-            type=ref,event=push
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
 
