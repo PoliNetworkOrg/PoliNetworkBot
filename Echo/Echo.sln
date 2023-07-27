@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Echo", "Main\src\Echo.csproj", "{72EC4037-C8A4-49FD-B022-490A0B131919}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoliNetwork.Telegram", "Main\Lib_CSharp\PoliNetwork.Telegram\PoliNetwork.Telegram.csproj", "{B5D1C363-426B-400C-8951-96BCAE609486}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72EC4037-C8A4-49FD-B022-490A0B131919}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72EC4037-C8A4-49FD-B022-490A0B131919}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72EC4037-C8A4-49FD-B022-490A0B131919}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72EC4037-C8A4-49FD-B022-490A0B131919}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5D1C363-426B-400C-8951-96BCAE609486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5D1C363-426B-400C-8951-96BCAE609486}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5D1C363-426B-400C-8951-96BCAE609486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5D1C363-426B-400C-8951-96BCAE609486}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
