@@ -23,13 +23,12 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            polinetwork/${{ matrix.bots }}
+            polinetwork/TelegramBot/${{ matrix.bots }}
           tags: |
-            type=ref,event=branch
-            type=ref,event=pr
+            type=sha,prefix=${{ github.ref_name }}-,suffix=,format=long
+            type=ref
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
-            type=ref,sha
 
       - name: Build
         uses: docker/build-push-action@v3
