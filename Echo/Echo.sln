@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Echo", "Main\src\Echo.csproj", "{72EC4037-C8A4-49FD-B022-490A0B131919}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Echo", "Main\Echo.csproj", "{72EC4037-C8A4-49FD-B022-490A0B131919}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EchoTest", "Test\EchoTest.csproj", "{1661642F-36B9-4F4C-B20C-AB211FE9744E}"
 EndProject
