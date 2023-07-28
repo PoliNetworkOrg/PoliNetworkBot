@@ -8,11 +8,13 @@ namespace Echo;
 internal static class Program
 {
     private static TelegramBot? _telegramBot;
-    private static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+
+    private static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update,
+        CancellationToken cancellationToken)
     {
         if (_telegramBot == null)
             return;
-        
+
         // Only process Message updates: https://core.telegram.org/bots/api#message
         if (update.Message is not { } message)
             return;
@@ -23,7 +25,7 @@ internal static class Program
         //Simply handle every message update with the "echo" method
         await PoliNetwork.Telegram.Utils.Echo.EchoMethod(message, _telegramBot, cancellationToken);
     }
-    
+
     public static void Main(string[] args)
     {
         Console.WriteLine("Hello, starting Echo bot!");

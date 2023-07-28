@@ -6,8 +6,12 @@ namespace EchoTest;
 
 public class Tests
 {
-    private static Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) => Task.CompletedTask;
-    
+    private static Task HandleUpdateAsync(ITelegramBotClient botClient, Update update,
+        CancellationToken cancellationToken)
+    {
+        return Task.CompletedTask;
+    }
+
     [SetUp]
     public void Setup()
     {
