@@ -1,4 +1,6 @@
-﻿using PoliNetwork.Core.Data;
+﻿#region
+
+using PoliNetwork.Core.Data;
 using PoliNetwork.Core.Utils;
 using PoliNetwork.Core.Utils.LoggerNS;
 using PoliNetwork.Telegram.Objects;
@@ -6,6 +8,8 @@ using PoliNetwork.Telegram.Objects.Bot;
 using PoliNetwork.Telegram.Objects.Updates;
 using PoliNetwork.Telegram.Utils.ConfigUtils;
 using PoliNetwork.Telegram.Variables;
+
+#endregion
 
 namespace Echo;
 

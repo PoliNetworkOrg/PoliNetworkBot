@@ -1,4 +1,8 @@
+#region
+
 using PoliNetwork.Telegram.Objects.Bot;
+
+#endregion
 
 namespace ModerationTest.Tests;
 
