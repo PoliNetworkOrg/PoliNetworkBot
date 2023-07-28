@@ -3,9 +3,9 @@
 using PoliNetwork.Core.Data;
 using PoliNetwork.Core.Utils;
 using PoliNetwork.Core.Utils.LoggerNS;
-using PoliNetwork.Telegram.Objects;
 using PoliNetwork.Telegram.Objects.Bot;
-using PoliNetwork.Telegram.Objects.Updates;
+using PoliNetwork.Telegram.Objects.Configuration;
+using PoliNetwork.Telegram.Objects.Updates.Update;
 using PoliNetwork.Telegram.Utils.ConfigUtils;
 using PoliNetwork.Telegram.Variables;
 
@@ -39,7 +39,8 @@ internal static class Program
 
 
         var updateMethod = new UpdateMethod(UpdateAction);
-        _telegramBot = new TelegramBot(telegramConfig, updateMethod, LogConfig);
+        telegramConfig.UpdateMethod = updateMethod;
+        _telegramBot = new TelegramBot(telegramConfig, LogConfig);
         _telegramBot.Start(new CancellationToken());
         Wait.WaitForever();
     }
