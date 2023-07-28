@@ -29,9 +29,9 @@ internal static class Program
     {
         GlobalVariables.DefaultLogger.SetLogConfing(LogConfig);
         GlobalVariables.DefaultLogger.Info("Hello, starting Moderation bot!");
-        _telegramBot = new TelegramBot(new TelegramConfig(){Token = "token"}, LogConfig);
+        _telegramBot = new TelegramBot(new TelegramConfig { Token = "token" }, LogConfig);
         _telegramBot.Start(HandleUpdateAsync);
-        Wait.WaitForeverConsoleReadline();
+        Wait.WaitForever();
     }
 
     /// <summary>
