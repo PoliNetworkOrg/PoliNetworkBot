@@ -9,6 +9,7 @@ jobs:
       matrix:
         bots:
           - Echo
+          - Moderation
     name: Docker Build
     runs-on: ubuntu-latest
     steps:
@@ -51,6 +52,7 @@ jobs:
       matrix:
         bots:
           - Echo
+          - Moderation
     uses: ./.github/workflows/cd-slave.yaml
     with:
       docker_image_tag: polinetwork/polinetworkbot:${{ matrix.bots }}Bot-${{ github.ref_name }}-${{ github.sha }}
@@ -67,7 +69,7 @@ jobs:
       fail-fast: false
       matrix:
         bots:
-          - Echo
+          - Moderation
     uses: ./.github/workflows/cd-slave.yaml
     with:
       docker_image_tag: polinetwork/polinetworkbot:${{ matrix.bots }}Bot-${{ github.ref_name }}-${{ github.sha }}

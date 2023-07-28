@@ -12,6 +12,7 @@ jobs:
       matrix:
         bots:
           - Echo
+          - Moderation
     defaults:
       run:
         working-directory: ${{ matrix.bots }}
