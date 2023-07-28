@@ -1,4 +1,5 @@
-﻿using PoliNetwork.Core.Utils;
+﻿using PoliNetwork.Core.Data;
+using PoliNetwork.Core.Utils;
 using PoliNetwork.Core.Utils.LoggerNS;
 using PoliNetwork.Telegram.Objects.Bot;
 using PoliNetwork.Telegram.Utils;
@@ -32,8 +33,8 @@ internal static class Program
 
     public static void Main(string[] args)
     {
-        PoliNetwork.Core.Data.Variables.DefaultLogger.SetLogConfing(LogConfig);
-        PoliNetwork.Core.Data.Variables.DefaultLogger.Info("Hello, starting Moderation bot!");
+        Variables.DefaultLogger.SetLogConfing(LogConfig);
+        Variables.DefaultLogger.Info("Hello, starting Moderation bot!");
         _telegramBot = new TelegramBot("token", LogConfig);
         _telegramBot.Start(HandleUpdateAsync);
         Wait.WaitForeverConsoleReadline();
