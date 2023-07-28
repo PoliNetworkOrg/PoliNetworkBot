@@ -18,7 +18,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Main\Lib_CSharp\PoliNetwork.Core\src\PoliNetwork.Core.csproj"/>
-        <ProjectReference Include="..\Main\Lib_CSharp\PoliNetwork.Telegram\PoliNetwork.Telegram.csproj"/>
         <ProjectReference Include="..\Main\Lib_CSharp\PoliNetwork.Telegram\src\PoliNetwork.Telegram.csproj"/>
     </ItemGroup>
 
