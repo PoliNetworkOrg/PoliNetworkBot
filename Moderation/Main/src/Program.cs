@@ -1,5 +1,6 @@
 ﻿using PoliNetwork.Core.Utils;
 using PoliNetwork.Telegram.Objects.Bot;
+using PoliNetwork.Telegram.Utils;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
@@ -23,7 +24,7 @@ internal static class Program
             return;
 
         //Simply handle every message update with the "echo" method
-        await PoliNetwork.Telegram.Utils.Echo.EchoMethod(message, _telegramBot, cancellationToken);
+        await Echo.EchoMethod(message, _telegramBot, cancellationToken);
     }
 
     public static void Main(string[] args)
