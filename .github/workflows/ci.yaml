@@ -33,16 +33,11 @@ jobs:
         run: dotnet build --no-restore
 
       - name: Test
-        run: dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
-
-      - name: Publish coverage report to coveralls.io
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ${{ matrix.bots }}/Test/TestResults/coverage.info
+        run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
-          file: ${{ matrix.bots }}/Test/TestResults/coverage.info
+          file: Test/coverage.opencover.xml
           token: ${{ secrets.CODECOV_TOKEN }}
+          root_dir: ${{ matrix.bots }}
