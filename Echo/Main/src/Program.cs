@@ -1,25 +1,34 @@
-﻿
-using PoliNetwork.Telegram.Objects;
-using PoliNetwork.Telegram.Utils;
+﻿using PoliNetwork.Core.Utils;
+using PoliNetwork.Telegram.Objects.Bot;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
+namespace Echo;
 
-Console.WriteLine("Hello, starting Echo bot!");
-
-var telegramBotWrapper = new TelegramBot("token");
-
-telegramBotWrapper.Start(HandleUpdateAsync);
-while (true)
+internal static class Program
 {
-    Console.ReadLine();
-}
+    private static TelegramBot? _telegramBot;
+    private static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+    {
+        if (_telegramBot == null)
+            return;
+        
+        // Only process Message updates: https://core.telegram.org/bots/api#message
+        if (update.Message is not { } message)
+            return;
 
-async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
-{
-    // Only process Message updates: https://core.telegram.org/bots/api#message
-    if (update.Message is not { } message)
-        return;
+        if (botClient.BotId != _telegramBot.GetId())
+            return;
 
-    await Echo.EchoMethod(message, botClient, cancellationToken);
+        //Simply handle every message update with the "echo" method
+        await PoliNetwork.Telegram.Utils.Echo.EchoMethod(message, _telegramBot, cancellationToken);
+    }
+    
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("Hello, starting Echo bot!");
+        _telegramBot = new TelegramBot("token");
+        _telegramBot.Start(HandleUpdateAsync);
+        Wait.WaitForeverConsoleReadline();
+    }
 }
