@@ -32,7 +32,7 @@ internal static class Program
 
     public static void Main(string[] args)
     {
-        Console.WriteLine("Hello, starting Moderation bot!");
+        MainLogger.Info("Hello, starting Moderation bot!");
         _telegramBot = new TelegramBot("token", LogConfig);
         _telegramBot.Start(HandleUpdateAsync);
         Wait.WaitForeverConsoleReadline();
