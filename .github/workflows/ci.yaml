@@ -41,8 +41,8 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ${{ matrix.bots }}/Test/TestResults/coverage.info
 
-      # - name: Upload coverage to Codecov
-      #   uses: codecov/codecov-action@v1
-      #   with:
-      #     file: ./${{ matrix.bots }}/Test/coverage.opencover.xml
-      #     token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          file: ${{ matrix.bots }}/Test/TestResults/coverage.info
+          token: ${{ secrets.CODECOV_TOKEN }}
