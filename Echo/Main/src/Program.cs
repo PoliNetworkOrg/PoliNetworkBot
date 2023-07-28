@@ -9,26 +9,20 @@ namespace Echo;
 
 internal static class Program
 {
+    /// <summary>
+    /// Telegram bot
+    /// </summary>
     private static TelegramBot? _telegramBot;
+
+    /// <summary>
+    ///     Default log config
+    /// </summary>
     private static readonly LogConfig LogConfig = new();
 
-    private static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update,
-        CancellationToken cancellationToken)
-    {
-        if (_telegramBot == null)
-            return;
-
-        // Only process Message updates: https://core.telegram.org/bots/api#message
-        if (update.Message is not { } message)
-            return;
-
-        if (botClient.BotId != _telegramBot.GetId())
-            return;
-
-        //Simply handle every message update with the "echo" method
-        await PoliNetwork.Telegram.Utils.Echo.EchoMethod(message, _telegramBot, cancellationToken);
-    }
-
+    /// <summary>
+    ///     Main
+    /// </summary>
+    /// <param name="args">args</param>
     public static void Main(string[] args)
     {
         Variables.DefaultLogger.SetLogConfing(LogConfig);
@@ -37,4 +31,33 @@ internal static class Program
         _telegramBot.Start(HandleUpdateAsync);
         Wait.WaitForeverConsoleReadline();
     }
+    
+    /// <summary>
+    ///     Handle updates
+    /// </summary>
+    /// <param name="botClient">botClient</param>
+    /// <param name="update">update</param>
+    /// <param name="cancellationToken">cancellationToken</param>
+    private static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update,
+        CancellationToken cancellationToken)
+    {
+        if (_telegramBot == null)
+            return;
+        
+        // Safe check to see if the bot we have is actually the one generating the update
+        if (botClient.BotId != _telegramBot.GetId())
+            return;
+
+        // Only process Message updates: https://core.telegram.org/bots/api#message
+        if (update.Message is not { } message)
+            return;
+        
+        //Simply handle every message update with the "echo" method
+        await PoliNetwork.Telegram.Utils.Echo.EchoMethod(
+            message, 
+            _telegramBot, //we actually pass our bot object, not the one received from the caller
+            cancellationToken);
+    }
+
+
 }
