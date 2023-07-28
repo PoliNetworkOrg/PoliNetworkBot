@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moderation", "Main\src\Mode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModerationTest", "Test\ModerationTest.csproj", "{450E3AFE-770C-4292-8106-FCA7932A4F19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoliNetwork.Db", "Main\Lib_CSharp\PoliNetwork.Db\PoliNetwork.Db.csproj", "{7FCB7A22-E42C-4C3D-B77F-17387059004C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{450E3AFE-770C-4292-8106-FCA7932A4F19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{450E3AFE-770C-4292-8106-FCA7932A4F19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{450E3AFE-770C-4292-8106-FCA7932A4F19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FCB7A22-E42C-4C3D-B77F-17387059004C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FCB7A22-E42C-4C3D-B77F-17387059004C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FCB7A22-E42C-4C3D-B77F-17387059004C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FCB7A22-E42C-4C3D-B77F-17387059004C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
