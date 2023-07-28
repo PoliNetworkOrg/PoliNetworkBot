@@ -23,19 +23,7 @@ internal static class Program
     ///     Default log config
     /// </summary>
     private static readonly LogConfig LogConfig = new();
-
-    /// <summary>
-    ///     Main
-    /// </summary>
-    /// <param name="args">args</param>
-    public static void Main(string[] args)
-    {
-        GlobalVariables.DefaultLogger.SetLogConfing(LogConfig);
-        GlobalVariables.DefaultLogger.Info("Hello, starting Moderation bot!");
-        _telegramBot = new TelegramBot(new TelegramConfig { Token = "token" }, LogConfig);
-        _telegramBot.Start(HandleUpdateAsync);
-        Wait.WaitForever();
-    }
+    
 
     /// <summary>
     ///     Handle updates
@@ -82,6 +70,6 @@ internal static class Program
         }
         _telegramBot = new TelegramBot(telegramConfig, LogConfig);
         _telegramBot.Start(HandleUpdateAsync);
-        Wait.WaitForeverConsoleReadline();
+        Wait.WaitForever();
     }
 }
