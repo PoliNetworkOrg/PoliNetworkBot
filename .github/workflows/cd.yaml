@@ -12,7 +12,7 @@ jobs:
     name: Docker Build
     runs-on: ubuntu-latest
     outputs:
-      docker_image_tag: ${{ steps.get_first_tag.outputs.first_tag }}
+      docker_image_tag: ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
 
     steps:
       - name: Check out the repo
@@ -29,16 +29,6 @@ jobs:
           tags: |
             type=sha,format=long,prefix=${{ matrix.bots }}Bot-${{ github.ref_name }}-
             type=raw,value=${{ matrix.bots }}Bot-${{ github.ref_name }}-latest
-
-      - name: Get first tag
-        id: get_first_tag
-        run: |
-          echo "::set-output name=first_tag::$(echo '${{ steps.meta.outputs.tags }}' | jq -r '.[0]')"
-        shell: bash
-
-      - name: Print Docker Image Tag
-        run: |
-          echo "Docker Image Tag: ${{  steps.get_first_tag.outputs.first_tag }}"
 
       - name: Log in to Docker Hub
         if: ${{ github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main'}}
