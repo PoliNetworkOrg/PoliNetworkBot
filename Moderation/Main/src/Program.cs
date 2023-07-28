@@ -11,7 +11,7 @@ namespace Moderation;
 internal static class Program
 {
     /// <summary>
-    /// Telegram bot
+    ///     Telegram bot
     /// </summary>
     private static TelegramBot? _telegramBot;
 
@@ -32,7 +32,7 @@ internal static class Program
         _telegramBot.Start(HandleUpdateAsync);
         Wait.WaitForeverConsoleReadline();
     }
-    
+
     /// <summary>
     ///     Handle updates
     /// </summary>
@@ -44,7 +44,7 @@ internal static class Program
     {
         if (_telegramBot == null)
             return;
-        
+
         // Safe check to see if the bot we have is actually the one generating the update
         if (botClient.BotId != _telegramBot.GetId())
             return;
@@ -52,13 +52,11 @@ internal static class Program
         // Only process Message updates: https://core.telegram.org/bots/api#message
         if (update.Message is not { } message)
             return;
-        
+
         //Simply handle every message update with the "echo" method
         await Echo.EchoMethod(
-            message, 
+            message,
             _telegramBot, //we actually pass our bot object, not the one received from the caller
             cancellationToken);
     }
-
-
 }
