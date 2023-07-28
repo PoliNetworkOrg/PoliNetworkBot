@@ -4,9 +4,9 @@ using PoliNetwork.Core.Data;
 using PoliNetwork.Core.Utils;
 using PoliNetwork.Core.Utils.LoggerNS;
 using PoliNetwork.Db.Utils;
-using PoliNetwork.Telegram.Objects;
 using PoliNetwork.Telegram.Objects.Bot;
-using PoliNetwork.Telegram.Objects.Updates;
+using PoliNetwork.Telegram.Objects.Configuration;
+using PoliNetwork.Telegram.Objects.Updates.Update;
 using PoliNetwork.Telegram.Utils;
 using PoliNetwork.Telegram.Utils.ConfigUtils;
 using PoliNetwork.Telegram.Variables;
@@ -33,21 +33,22 @@ internal static class Program
         GlobalVariables.DefaultLogger.SetLogConfing(LogConfig);
         GlobalVariables.DefaultLogger.Info("Hello, starting Moderation bot!");
         var telegramConfig = TelegramConfigUtils.LoadOrInitializeConfig(Variables.DefaultConfigPath);
-        var dbConfig = DbConfigUtils.LoadOrInitializeConfig(PoliNetwork.Db.Variables.Variables.DefaultConfigPath);
         if (telegramConfig == null)
         {
             GlobalVariables.DefaultLogger.Emergency("Telegram Config is undefined when starting the bot.");
             return;
         }
 
+        telegramConfig.UpdateMethod = new UpdateMethod(UpdateAction);
+
+        var dbConfig = DbConfigUtils.LoadOrInitializeConfig(PoliNetwork.Db.Variables.Variables.DefaultConfigPath);
         if (dbConfig == null)
         {
             GlobalVariables.DefaultLogger.Emergency("Database Config is undefined when starting the bot.");
             return;
         }
 
-        var updateMethod = new UpdateMethod(UpdateAction);
-        _telegramBot = new TelegramBot(telegramConfig, updateMethod, LogConfig);
+        _telegramBot = new TelegramBot(telegramConfig, LogConfig);
         _telegramBot.Start(new CancellationToken());
         Wait.WaitForever();
     }
