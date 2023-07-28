@@ -41,3 +41,4 @@ jobs:
           file: Test/coverage.opencover.xml
           token: ${{ secrets.CODECOV_TOKEN }}
           root_dir: ${{ matrix.bots }}
+          fixes: "*::${{ matrix.bots }}/"
