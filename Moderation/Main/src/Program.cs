@@ -6,8 +6,7 @@ using PoliNetwork.Telegram.Objects.Bot;
 using PoliNetwork.Telegram.Utils;
 using PoliNetwork.Telegram.Utils.ConfigUtils;
 using PoliNetwork.Telegram.Variables;
-using Telegram.Bot;
-using Telegram.Bot.Types;
+
 
 namespace Moderation;
 

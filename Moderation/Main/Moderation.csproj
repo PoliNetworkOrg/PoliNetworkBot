@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <WarningsAsErrors>Nullable</WarningsAsErrors>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Folder Include="Data\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Lib_CSharp\**" />
+      <Compile Remove="static\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Lib_CSharp\**" />
+      <EmbeddedResource Remove="static\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Lib_CSharp\**" />
+      <None Remove="static\**" />
+      <None Remove="Dockerfile" />
+    </ItemGroup>
+
+</Project>
