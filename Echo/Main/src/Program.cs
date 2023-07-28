@@ -1,4 +1,5 @@
 ﻿using PoliNetwork.Core.Utils;
+using PoliNetwork.Core.Utils.LoggerNS;
 using PoliNetwork.Telegram.Objects.Bot;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -8,6 +9,8 @@ namespace Echo;
 internal static class Program
 {
     private static TelegramBot? _telegramBot;
+    private static readonly LogConfig LogConfig = new();
+    private static readonly Logger MainLogger = new(LogConfig);
 
     private static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update,
         CancellationToken cancellationToken)
@@ -28,8 +31,8 @@ internal static class Program
 
     public static void Main(string[] args)
     {
-        Console.WriteLine("Hello, starting Echo bot!");
-        _telegramBot = new TelegramBot("token");
+        MainLogger.Info("Hello, starting Echo bot!");
+        _telegramBot = new TelegramBot("token", LogConfig);
         _telegramBot.Start(HandleUpdateAsync);
         Wait.WaitForeverConsoleReadline();
     }
