@@ -6,7 +6,7 @@ on:
         type: string
       app:
         required: true
-        type: string 
+        type: string
       environment:
         required: true
         type: string
@@ -24,13 +24,17 @@ jobs:
           repository: PoliNetworkOrg/polinetwork-cd
           ssh-key: ${{ secrets.CD_DEPLOY_KEY }}
 
+      - name: Print Docker Image Tag
+        run: |
+          echo "Docker Image Tag: ${{ inputs.docker_image_tag }}"
+
       - name: Update Manifest File
         uses: mikefarah/yq@master
         with:
           cmd: yq -i '.spec|=select(.selector.matchLabels.app=="${{ inputs.app }}-${{ inputs.environment }}").template.spec.containers[0].image = "${{ inputs.docker_image_tag }}"' ${{ inputs.environment }}/${{ inputs.app }}/deployment.yaml
 
       - name: Commit changes in manifest to repo
-        run: | 
+        run: |
           git config user.name "GitHub Actions Bot"
           git config user.email ""
           git add .
