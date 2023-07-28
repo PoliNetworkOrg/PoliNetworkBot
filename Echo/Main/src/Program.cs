@@ -10,7 +10,6 @@ internal static class Program
 {
     private static TelegramBot? _telegramBot;
     private static readonly LogConfig LogConfig = new();
-    private static readonly Logger MainLogger = new(LogConfig);
 
     private static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update,
         CancellationToken cancellationToken)
@@ -31,7 +30,8 @@ internal static class Program
 
     public static void Main(string[] args)
     {
-        MainLogger.Info("Hello, starting Echo bot!");
+        PoliNetwork.Core.Data.Variables.DefaultLogger.SetLogConfing(LogConfig);
+        PoliNetwork.Core.Data.Variables.DefaultLogger.Info("Hello, starting Echo bot!");
         _telegramBot = new TelegramBot("token", LogConfig);
         _telegramBot.Start(HandleUpdateAsync);
         Wait.WaitForeverConsoleReadline();
