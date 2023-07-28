@@ -1,9 +1,12 @@
-﻿using PoliNetwork.Core.Data;
+using PoliNetwork.Core.Data;
+using PoliNetwork.Db;
 using PoliNetwork.Core.Utils;
 using PoliNetwork.Core.Utils.LoggerNS;
+using PoliNetwork.Db.Utils;
 using PoliNetwork.Telegram.Objects.Bot;
 using PoliNetwork.Telegram.Objects.Configuration;
 using PoliNetwork.Telegram.Utils;
+using PoliNetwork.Telegram.Utils.ConfigUtils;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
@@ -20,19 +23,7 @@ internal static class Program
     ///     Default log config
     /// </summary>
     private static readonly LogConfig LogConfig = new();
-
-    /// <summary>
-    ///     Main
-    /// </summary>
-    /// <param name="args">args</param>
-    public static void Main(string[] args)
-    {
-        GlobalVariables.DefaultLogger.SetLogConfing(LogConfig);
-        GlobalVariables.DefaultLogger.Info("Hello, starting Moderation bot!");
-        _telegramBot = new TelegramBot(new TelegramConfig { Token = "token" }, LogConfig);
-        _telegramBot.Start(HandleUpdateAsync);
-        Wait.WaitForever();
-    }
+    
 
     /// <summary>
     ///     Handle updates
@@ -59,5 +50,26 @@ internal static class Program
             message,
             _telegramBot, //we actually pass our bot object, not the one received from the caller
             cancellationToken);
+    }
+
+    public static void Main(string[] args)
+    {
+        GlobalVariables.DefaultLogger.SetLogConfing(LogConfig);
+        GlobalVariables.DefaultLogger.Info("Hello, starting Moderation bot!");
+        var telegramConfig = TelegramConfigUtils.LoadOrInitializeConfig(PoliNetwork.Telegram.Variables.Variables.DefaultConfigPath);
+        var dbConfig = DbConfigUtils.LoadOrInitializeConfig(PoliNetwork.Db.Variables.Variables.DefaultConfigPath);
+        if (telegramConfig == null)
+        {
+            GlobalVariables.DefaultLogger.Emergency($"Telegram Config is undefined when starting the bot.");
+            return;   
+        }
+        if (dbConfig == null)
+        {
+            GlobalVariables.DefaultLogger.Emergency("Database Config is undefined when starting the bot.");
+            return;   
+        }
+        _telegramBot = new TelegramBot(telegramConfig, LogConfig);
+        _telegramBot.Start(HandleUpdateAsync);
+        Wait.WaitForever();
     }
 }
