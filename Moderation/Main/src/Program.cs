@@ -3,7 +3,7 @@ using PoliNetwork.Telegram.Objects.Bot;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace Echo;
+namespace Moderation;
 
 internal static class Program
 {

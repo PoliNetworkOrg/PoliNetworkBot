@@ -2,7 +2,7 @@ using PoliNetwork.Telegram.Objects.Bot;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace EchoTest.Tests;
+namespace ModerationTest.Tests;
 
 public class Tests
 {
