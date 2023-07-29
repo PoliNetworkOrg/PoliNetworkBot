@@ -67,6 +67,6 @@ internal static class Program
         Echo.EchoMethod(
             message,
             _telegramBot, //we actually pass our bot object, not the one received from the caller
-            arg1).Wait(arg1);
+            arg1);
     }
 }
