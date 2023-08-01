@@ -1,0 +1,77 @@
+﻿---
+name: Publish Docker image
+on: push
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        bots:
+          - Moderation
+    name: Docker Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            polinetwork/polinetworkbot
+          tags: |
+            type=sha,format=long,prefix=${{ matrix.bots }}Bot-${{ github.ref_name }}-
+            type=raw,value=${{ matrix.bots }}Bot-${{ github.ref_name }}-latest
+
+      - name: Log in to Docker Hub
+        if: ${{ github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main'}}
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Build
+        uses: docker/build-push-action@v3
+        with:
+          push: ${{ github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main'}}
+          context: ${{ matrix.bots }}/Main
+          tags: polinetwork/polinetworkbot:${{ matrix.bots }}Bot-${{ github.ref_name }}-${{ github.sha }},polinetwork/polinetworkbot:${{ matrix.bots }}Bot-${{ github.ref_name }}-latest
+          labels: ${{ steps.meta.outputs.labels }}
+
+  Update-K8s-Manifests-Dev:
+    name: Update K8s Deployment Manifest with Image Version
+    needs: build
+    if: ${{ github.ref == 'refs/heads/dev'}}
+    strategy:
+      fail-fast: false
+      matrix:
+        bots:
+          - Moderation
+    uses: ./.github/workflows/cd-slave.yaml
+    with:
+      docker_image_tag: polinetwork/polinetworkbot:${{ matrix.bots }}Bot-${{ github.ref_name }}-${{ github.sha }}
+      app: newbot
+      environment: dev
+    secrets:
+      CD_DEPLOY_KEY: ${{ secrets.CD_DEPLOY_KEY }}
+
+  Update-K8s-Manifests-Prod:
+    name: Update K8s Deployment Manifest with Image Version
+    needs: build
+    if: ${{github.ref == 'refs/heads/main'}}
+    strategy:
+      fail-fast: false
+      matrix:
+        bots:
+          - Moderation
+    uses: ./.github/workflows/cd-slave.yaml
+    with:
+      docker_image_tag: polinetwork/polinetworkbot:${{ matrix.bots }}Bot-${{ github.ref_name }}-${{ github.sha }}
+      app: newbot
+      environment: prod
+    secrets:
+      CD_DEPLOY_KEY: ${{ secrets.CD_DEPLOY_KEY }}

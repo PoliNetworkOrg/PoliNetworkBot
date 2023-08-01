@@ -1,0 +1,42 @@
+﻿on:
+  workflow_call:
+    inputs:
+      docker_image_tag:
+        required: true
+        type: string
+      app:
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
+    secrets:
+      CD_DEPLOY_KEY:
+        required: true
+
+jobs:
+  update_manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get application code from repo
+        uses: actions/checkout@v3
+        with:
+          repository: PoliNetworkOrg/polinetwork-cd
+          ssh-key: ${{ secrets.CD_DEPLOY_KEY }}
+
+      - name: Print Docker Image Tag
+        run: |
+          echo "Docker Image Tag: ${{ inputs.docker_image_tag }}"
+
+      - name: Update Manifest File
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq -i '.spec|=select(.selector.matchLabels.app=="${{ inputs.app }}-${{ inputs.environment }}").template.spec.containers[0].image = "${{ inputs.docker_image_tag }}"' ${{ inputs.environment }}/${{ inputs.app }}/deployment.yaml
+
+      - name: Commit changes in manifest to repo
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email ""
+          git add .
+          git commit -m "Update image version in K8s Deployment manifests file"
+          git push origin
