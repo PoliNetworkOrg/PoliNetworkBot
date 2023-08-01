@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using Moderation;
 using PoliNetwork.Telegram.Objects.Bot;
 
 namespace ModerationTest.Tests
@@ -19,6 +20,21 @@ namespace ModerationTest.Tests
             // Assert something here, if applicable.
             // xUnit doesn't have an equivalent to NUnit's Assert.Pass().
             // Your test will pass as long as it doesn't throw an exception.
+        }
+    }
+    public class HelloWorldTests
+    {
+        [Fact]
+        public void TestSayHello()
+        {
+            // Arrange
+            HelloWorld helloWorld = new HelloWorld();
+
+            // Act
+            string result = helloWorld.SayHello();
+
+            // Assert
+            Assert.Equal("Hello, World!", result);
         }
     }
 }

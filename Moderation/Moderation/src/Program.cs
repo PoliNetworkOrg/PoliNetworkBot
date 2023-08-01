@@ -70,3 +70,12 @@ internal static class Program
             arg1);
     }
 }
+
+//to be removed
+public class HelloWorld
+{
+    public string SayHello()
+    {
+        return "Hello, World!";
+    }
+}
