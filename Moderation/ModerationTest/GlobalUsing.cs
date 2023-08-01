@@ -1,6 +1,1 @@
-﻿namespace DefaultNamespace;
-
-public class GlobalUsing
-{
-    
-}
+﻿global using Xunit;
