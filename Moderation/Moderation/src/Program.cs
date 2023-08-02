@@ -3,15 +3,17 @@
 using PoliNetwork.Core.Data;
 using PoliNetwork.Core.Utils;
 using PoliNetwork.Core.Utils.LoggerNS;
+using PoliNetwork.Db.Utils;
 using PoliNetwork.Telegram.Objects.Bot;
 using PoliNetwork.Telegram.Objects.Configuration;
 using PoliNetwork.Telegram.Objects.Updates.Update;
+using PoliNetwork.Telegram.Utils;
 using PoliNetwork.Telegram.Utils.ConfigUtils;
 using PoliNetwork.Telegram.Variables;
 
 #endregion
 
-namespace Echo;
+namespace Moderation;
 
 internal static class Program
 {
@@ -29,7 +31,7 @@ internal static class Program
     public static void Main(string[] args)
     {
         GlobalVariables.DefaultLogger.SetLogConfing(LogConfig);
-        GlobalVariables.DefaultLogger.Info("Hello, starting Echo bot!");
+        GlobalVariables.DefaultLogger.Info("Hello, starting Moderation bot!");
         var telegramConfig = TelegramConfigUtils.LoadOrInitializeConfig(Variables.DefaultConfigPath);
         if (telegramConfig == null)
         {
@@ -37,9 +39,15 @@ internal static class Program
             return;
         }
 
+        telegramConfig.UpdateMethod = new UpdateMethod(UpdateAction);
 
-        var updateMethod = new UpdateMethod(UpdateAction);
-        telegramConfig.UpdateMethod = updateMethod;
+        var dbConfig = DbConfigUtils.LoadOrInitializeConfig(PoliNetwork.Db.Variables.Variables.DefaultConfigPath);
+        if (dbConfig == null)
+        {
+            GlobalVariables.DefaultLogger.Emergency("Database Config is undefined when starting the bot.");
+            return;
+        }
+
         _telegramBot = new TelegramBot(telegramConfig, LogConfig);
         _telegramBot.Start(new CancellationToken());
         Wait.WaitForever();
@@ -56,9 +64,18 @@ internal static class Program
             return;
 
         //Simply handle every message update with the "echo" method
-        PoliNetwork.Telegram.Utils.Echo.EchoMethod(
+        Echo.EchoMethod(
             message,
             _telegramBot, //we actually pass our bot object, not the one received from the caller
             arg1);
+    }
+}
+
+//to be removed
+public class HelloWorld
+{
+    public string SayHello()
+    {
+        return "Hello, World!";
     }
 }
