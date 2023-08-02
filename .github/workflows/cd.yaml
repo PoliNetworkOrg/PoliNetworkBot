@@ -38,7 +38,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: ${{ github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main'}}
-          context: ${{ matrix.bots }}/Main
+          context: ${{ matrix.bots }}/${{ matrix.bots }}
           tags: polinetwork/polinetworkbot:${{ matrix.bots }}Bot-${{ github.ref_name }}-${{ github.sha }},polinetwork/polinetworkbot:${{ matrix.bots }}Bot-${{ github.ref_name }}-latest
           labels: ${{ steps.meta.outputs.labels }}
 
