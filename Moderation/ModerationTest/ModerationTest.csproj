@@ -24,7 +24,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Moderation\Moderation.csproj" />
-        <ProjectReference Include="..\Moderation\PoliNetworkBotRefactor.csproj" />
         <ProjectReference Include="..\Moderation\Lib_CSharp\PoliNetwork.Core\src\PoliNetwork.Core.csproj" />
         <ProjectReference Include="..\Moderation\Lib_CSharp\PoliNetwork.Db\src\PoliNetwork.Db.csproj" />
         <ProjectReference Include="..\Moderation\Lib_CSharp\PoliNetwork.Telegram\src\PoliNetwork.Telegram.csproj" />
