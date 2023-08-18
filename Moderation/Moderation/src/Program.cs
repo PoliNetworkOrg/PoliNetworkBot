@@ -1,81 +1,56 @@
-﻿#region
-
-using PoliNetwork.Core.Data;
+﻿#region 
 using PoliNetwork.Core.Utils;
-using PoliNetwork.Core.Utils.LoggerNS;
+using PoliNetwork.Telegram.Logger;
 using PoliNetwork.Db.Utils;
-using PoliNetwork.Telegram.Objects.Bot;
-using PoliNetwork.Telegram.Objects.Configuration;
-using PoliNetwork.Telegram.Objects.Updates.Update;
-using PoliNetwork.Telegram.Utils;
-using PoliNetwork.Telegram.Utils.ConfigUtils;
-using PoliNetwork.Telegram.Variables;
-
-#endregion
+using PoliNetwork.Telegram.Bot;
+using PoliNetwork.Telegram.Configuration;
+using PoliNetwork.Telegram.ConfigurationLoader;
+using PoliNetwork.Db.Objects;
+using PoliNetwork.Telegram.Options;
+using PoliNetwork.Telegram.Properties;
+#endregion 
 
 namespace Moderation;
 
 internal static class Program
 {
-    /// <summary>
-    ///     Telegram bot
-    /// </summary>
-    private static TelegramBot? _telegramBot;
+    private static ModerationBot? bot = null;
+    private static readonly string databaseConfigurationPath = "";
 
-    /// <summary>
-    ///     Default log config
-    /// </summary>
-    private static readonly LogConfig LogConfig = new();
-
-
-    public static void Main(string[] args)
+    public static void Main()
     {
-        GlobalVariables.DefaultLogger.SetLogConfing(LogConfig);
-        GlobalVariables.DefaultLogger.Info("Hello, starting Moderation bot!");
-        var telegramConfig = TelegramConfigUtils.LoadOrInitializeConfig(Variables.DefaultConfigPath);
-        if (telegramConfig == null)
+        /* The PoliNetwork.Core.Utils.LoggerNS.Logger must extends the AbstractLogger so a sub class will be needed
+        The only dependency of the PoliNetwork.Core.Utils.LoggerNS.Logger resides here in the Program.cs  */
+        AbstractLogger? logger = new DefaultLogger();
+        FileConfigurationLoader fileConfigurationLoader = new JSONFileConfigurationLoader();
+        AbstractTelegramBotOptions? botConfiguration = fileConfigurationLoader.LoadOrInitializeConfig(Configuration.TELEGRAM_CONFIGURATION_PATH, logger);
+
+        DbConfig? databaseConfiguration = DbConfigUtils.LoadOrInitializeConfig(databaseConfigurationPath);
+        if (botConfiguration == null)
         {
-            GlobalVariables.DefaultLogger.Emergency("Telegram Config is undefined when starting the bot.");
+            logger?.Emergency("Telegram Config is undefined when starting the bot.");
             return;
         }
 
-        telegramConfig.UpdateMethod = new UpdateMethod(UpdateAction);
-
-        var dbConfig = DbConfigUtils.LoadOrInitializeConfig(PoliNetwork.Db.Variables.Variables.DefaultConfigPath);
-        if (dbConfig == null)
+        if (databaseConfiguration == null)
         {
-            GlobalVariables.DefaultLogger.Emergency("Database Config is undefined when starting the bot.");
+            logger?.Emergency("Database Config is undefined when starting the bot.");
             return;
         }
 
-        _telegramBot = new TelegramBot(telegramConfig, LogConfig);
-        _telegramBot.Start(new CancellationToken());
+        logger?.Info("RUNNING MODERATION BOT");
+        botConfiguration.UpdateMethod = new UpdateMethod(UpdateAction);
+
+        /* TelegramConfiguration should extends TelegramBotClientOptions */
+        bot = new ModerationBot(options: botConfiguration, logger: logger);
+        bot.Start(new CancellationToken());
         Wait.WaitForever();
     }
 
-    private static void UpdateAction(CancellationToken arg1, IUpdate arg2)
+    private static void UpdateAction(CancellationToken cancellationToken, IUpdate update)
     {
-        if (_telegramBot == null)
-            return;
-
-
-        // Only process Message updates: https://core.telegram.org/bots/api#message
-        if (arg2.Message is not { } message)
-            return;
-
-        //Simply handle every message update with the "echo" method
-        Echo.EchoMethod(
-            message,
-            _telegramBot, //we actually pass our bot object, not the one received from the caller
-            arg1);
-    }
-}
-
-//to be removed
-public class HelloWorld
-{
-    public string SayHello()
-    {
-        return "Hello, World!";
+        /* Process Message updates only, see: https://core.telegram.org/bots/api#message */
+        if (bot == null || update.Message is not { } message) return;
+        bot.Echo(message, cancellationToken);
     }
 }
