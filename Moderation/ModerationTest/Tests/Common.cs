@@ -1,6 +1,8 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Moderation;
-using PoliNetwork.Telegram.Objects.Bot;
+using PoliNetwork.Telegram.Bot.Bots;
+
 
 namespace ModerationTest.Tests
 {
@@ -35,6 +37,14 @@ namespace ModerationTest.Tests
 
             // Assert
             Assert.Equal("Hello, World!", result);
+        }
+    }
+
+    public class HelloWorld
+    {
+        public string SayHello()
+        {
+            return "Hello, World!";
         }
     }
 }
