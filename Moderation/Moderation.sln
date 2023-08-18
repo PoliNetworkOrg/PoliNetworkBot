@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moderation", "Moderation\Moderation.csproj", "{C28EF231-412A-4FE9-88C3-C47FC362BDFC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Echo", "Echo", "{98A20692-9D53-4548-ADA5-3E4EF5AC78E0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModerationTest", "ModerationTest\ModerationTest.csproj", "{904CB386-4B14-4A1F-A356-50380A4963A9}"
 EndProject
 Global
