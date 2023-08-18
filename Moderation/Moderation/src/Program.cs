@@ -6,6 +6,7 @@ using PoliNetwork.Telegram.Bot;
 using PoliNetwork.Telegram.Configuration;
 using PoliNetwork.Telegram.ConfigurationLoader;
 using PoliNetwork.Db.Objects;
+using PoliNetwork.Telegram.Bot.Bots;
 using PoliNetwork.Telegram.Options;
 using PoliNetwork.Telegram.Properties;
 #endregion 
