@@ -1,0 +1,9 @@
+*
+!.gitignore
+!Program.cs
+!/src/
+!/src/**
+!persistence
+!persistence/**
+
+!README.md
