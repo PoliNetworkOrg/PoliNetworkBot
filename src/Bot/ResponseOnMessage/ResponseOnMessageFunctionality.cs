@@ -2,13 +2,20 @@ using Telegram.Bot;
 using PoliNetwork.Telegram.Bot.Handler;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types.Enums;
+using Telegram.Bot.Types;
 
 namespace PoliNetwork.Telegram.Bot.Functionality
 {
   class ResponseOnMessageFunctionality : AbstractTelegramBotFunctionality
+
   {
-    public ResponseOnMessageFunctionality(Handler.IUpdateHandler updateHandler, IPollingErrorHandler pollingErrorHandler)
-    : base(updateHandler, pollingErrorHandler) { }
+
+    public IAUpdateHanlder AupdateHanlder;
+    public ResponseOnMessageFunctionality(Handler.IUpdateHandler updateHandler, IPollingErrorHandler pollingErrorHandler, IAUpdateHanlder aupdateHanlder)
+    : base(updateHandler, pollingErrorHandler)
+    {
+      AupdateHanlder = aupdateHanlder;
+    }
 
     public override async Task Run(TelegramBot botClient)
     {
@@ -20,7 +27,10 @@ namespace PoliNetwork.Telegram.Bot.Functionality
       };
 
       botClient.StartReceiving(
-          updateHandler: _updateHandler.HandleUpdateAsync,
+          updateHandler: (a, b, c) =>
+          {
+            return AupdateHanlder.Process(a, b, c); // :( non ho voglia
+          },
           pollingErrorHandler: _pollingErrorHandler.HandlePollingErrorAsync,
           receiverOptions: receiverOptions,
           cancellationToken: cts.Token
@@ -34,4 +44,5 @@ namespace PoliNetwork.Telegram.Bot.Functionality
       cts.Cancel();
     }
   }
+
 }

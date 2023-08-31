@@ -13,7 +13,8 @@ namespace Telegram
     {
       IUpdateHandler updateHandler = new ResponseOnMessageUpdateHandler();
       IPollingErrorHandler pollingErrorHandler = new ResponseOnPollingErrorHandler();
-      ITelegramBotFunctionality sendResponseOnReceivedMessage = new ResponseOnMessageFunctionality(updateHandler, pollingErrorHandler);
+      IAUpdateHanlder aUpdateHanlder = new Example();
+      ITelegramBotFunctionality sendResponseOnReceivedMessage = new ResponseOnMessageFunctionality(updateHandler, pollingErrorHandler, aUpdateHanlder);
 
       string botToken = new JSONConfigurationLoader().LoadConfiguration(Config.APP_SETTIGNS).GetSection("Secrets:BotToken").Value!;
       TelegramBot bot = new(botToken)!;

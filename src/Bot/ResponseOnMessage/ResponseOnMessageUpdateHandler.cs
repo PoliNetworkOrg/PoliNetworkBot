@@ -1,4 +1,3 @@
-using PoliNetwork.Utility.ConfigurationLoader;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
@@ -6,7 +5,6 @@ namespace PoliNetwork.Telegram.Bot.Handler
 {
   public class ResponseOnMessageUpdateHandler : IUpdateHandler
   {
-
     public async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
     {
       /* This way we only process the message text part */
@@ -32,6 +30,7 @@ namespace PoliNetwork.Telegram.Bot.Handler
       serverPrompt = $"Sent message: {sentMessage.Text}";
       Console.WriteLine(serverPrompt);
     }
+
     private static string[] CreateForbiddenWordsArray()
     {
       string path = @"./persistence/forbidden_words.json";

@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 public sealed class ForbiddenWordsController
 {
   private string[] ForbiddenWords { get; set; }
@@ -18,7 +20,6 @@ public sealed class ForbiddenWordsController
       {
         _word = word; break;
       }
-
     }
 
     return _word;
