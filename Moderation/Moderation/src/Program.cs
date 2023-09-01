@@ -2,7 +2,6 @@
 using PoliNetwork.Core.Utils;
 using PoliNetwork.Telegram.Logger;
 using PoliNetwork.Db.Utils;
-using PoliNetwork.Telegram.Bot;
 using PoliNetwork.Telegram.Configuration;
 using PoliNetwork.Telegram.ConfigurationLoader;
 using PoliNetwork.Db.Objects;
@@ -15,8 +14,8 @@ namespace Moderation;
 
 internal static class Program
 {
-    private static ModerationBot? bot = null;
-    private static readonly string databaseConfigurationPath = "";
+    private static ModerationBot? _bot = null;
+    private const string DatabaseConfigurationPath = "";
 
     public static void Main()
     {
@@ -26,7 +25,7 @@ internal static class Program
         FileConfigurationLoader fileConfigurationLoader = new JSONFileConfigurationLoader();
         AbstractTelegramBotOptions? botConfiguration = fileConfigurationLoader.LoadOrInitializeConfig(Configuration.TELEGRAM_CONFIGURATION_PATH, logger);
 
-        DbConfig? databaseConfiguration = DbConfigUtils.LoadOrInitializeConfig(databaseConfigurationPath);
+        DbConfig? databaseConfiguration = DbConfigUtils.LoadOrInitializeConfig(DatabaseConfigurationPath);
         if (botConfiguration == null)
         {
             logger?.Emergency("Telegram Config is undefined when starting the bot.");
@@ -43,15 +42,15 @@ internal static class Program
         botConfiguration.UpdateMethod = new UpdateMethod(UpdateAction);
 
         /* TelegramConfiguration should extends TelegramBotClientOptions */
-        bot = new ModerationBot(options: botConfiguration, logger: logger);
-        bot.Start(new CancellationToken());
+        _bot = new ModerationBot(options: botConfiguration, logger: logger);
+        _bot.Start(new CancellationToken());
         Wait.WaitForever();
     }
 
     private static void UpdateAction(CancellationToken cancellationToken, IUpdate update)
     {
         /* Process Message updates only, see: https://core.telegram.org/bots/api#message */
-        if (bot == null || update.Message is not { } message) return;
-        bot.Echo(message, cancellationToken);
+        if (_bot == null || update.Message is not { } message) return;
+        _bot.Echo(message, cancellationToken);
     }
 }

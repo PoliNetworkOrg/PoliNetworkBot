@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading;
-using Moderation;
+﻿using System.Threading;
 using PoliNetwork.Telegram.Bot.Bots;
 
 
