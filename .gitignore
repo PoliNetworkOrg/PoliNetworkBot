@@ -6,4 +6,7 @@
 !persistence
 !persistence/**
 
+!Telegram.sln
+!Telegram.csproj
+
 !README.md
