@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # PoliNetworkBot
 [![codecov](https://codecov.io/github/PoliNetworkOrg/PoliNetworkBot/branch/main/graph/badge.svg?token=VOA14BM161)](https://codecov.io/github/PoliNetworkOrg/PoliNetworkBot)
 # PoliNetworkBot
@@ -7,7 +7,7 @@ Repository for the new revision of https://github.com/PoliNetworkOrg/PoliNetwork
 ### Lib
 
 We are using this library https://github.com/PoliNetworkOrg/Lib_CSharp
-=======
+
 # PoliNetwork Telegram Bot
 Codebase sperimentale per il refactoring del PoliNetwork Telegram Bot.
 
@@ -39,4 +39,4 @@ Creare il file `appsettings.json` all'interno della root directory e specifiare 
 
 Vedi come creare un bot e ottenere il relativo token: https://core.telegram.org/bots/tutorial#obtain-your-bot-token
 
->>>>>>> main
+

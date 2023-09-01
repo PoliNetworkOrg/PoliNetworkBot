@@ -6,7 +6,7 @@ using Telegram.Bot.Types.Enums;
 namespace PoliNetwork.Telegram.Bot
 {
   /// <summary>
-  /// Represents a Telegram bot that can interact with the Telegram Bot API.
+  /// Represents a PoliNetwork.Bot bot that can interact with the PoliNetwork.Bot Bot API.
   /// </summary>
   public class TelegramBot : TelegramBotClient
   {

@@ -10,7 +10,7 @@ namespace PoliNetwork.Telegram.Bot.Handler
       var ErrorMessage = exception switch
       {
         ApiRequestException apiRequestException
-          => $"Telegram API Error:\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
+          => $"PoliNetwork.Bot API Error:\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
         _ => exception.ToString()
       };
 

@@ -4,7 +4,7 @@ using Telegram.Bot.Types;
 namespace PoliNetwork.Telegram.Bot.Functionality
 {
   /// <summary>
-  /// Represents an interface for defining the functionality of a Telegram bot.
+  /// Represents an interface for defining the functionality of a PoliNetwork.Bot bot.
   /// </summary>
   public interface ITelegramBotFunctionality
   {
