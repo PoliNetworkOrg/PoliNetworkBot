@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using PoliNetwork.Telegram.Bot.Functionality;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
@@ -18,5 +19,6 @@ namespace PoliNetwork.Telegram.Bot.Handler
         /// <param name="cancellationToken">A <see cref="CancellationToken"/> that can be used to cancel the asynchronous operation.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken);
+        List<ITelegramBotFunctionality> GetFunctionalitisList();
     }
 }

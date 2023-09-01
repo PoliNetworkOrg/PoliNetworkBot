@@ -1,7 +1,7 @@
-using System.Threading.Tasks;
-using PoliNetwork.Telegram.Bot;
+using Telegram.Bot;
+using Telegram.Bot.Types;
 
-namespace Telegram.Bot.Functionality
+namespace PoliNetwork.Telegram.Bot.Functionality
 {
   /// <summary>
   /// Represents an interface for defining the functionality of a Telegram bot.
@@ -13,6 +13,6 @@ namespace Telegram.Bot.Functionality
     /// </summary>
     /// <param name="bot">The <see cref="TelegramBot"/> instance representing the bot with which the functionality is associated.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-    Task Run(TelegramBot bot);
+    Task RunAsync(ITelegramBotClient bot, Update update, CancellationToken cancellationToken);
   }
 }
