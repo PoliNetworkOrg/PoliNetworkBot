@@ -576,5 +576,8 @@ Moderation/Main/.idea/.idea.Main.dir/.idea/vcs.xml
 !persistence
 !persistence/**
 
+!Telegram.sln
+!Telegram.csproj
+
 !README.md
 >>>>>>> main
