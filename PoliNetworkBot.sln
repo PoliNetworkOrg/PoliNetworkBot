@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoliNetwork.Bot", "Moderation\Moderation\PoliNetwork.Bot.csproj", "{2F99A9EE-BDCD-4927-A4FA-35C3D3F06F2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoliNetwork.Telegram", "Lib_CSharp\PoliNetwork.Telegram\src\PoliNetwork.Telegram.csproj", "{21D75B9B-F9E1-4D99-B054-0B5DDF790821}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoliNetwork.Db", "Lib_CSharp\PoliNetwork.Db\src\PoliNetwork.Db.csproj", "{CEEB9629-B53D-482C-ABD8-96C7301242DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoliNetwork.Core", "Lib_CSharp\PoliNetwork.Core\src\PoliNetwork.Core.csproj", "{2514676E-0FB4-431E-A690-76BBFD1F84CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F99A9EE-BDCD-4927-A4FA-35C3D3F06F2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F99A9EE-BDCD-4927-A4FA-35C3D3F06F2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F99A9EE-BDCD-4927-A4FA-35C3D3F06F2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F99A9EE-BDCD-4927-A4FA-35C3D3F06F2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21D75B9B-F9E1-4D99-B054-0B5DDF790821}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21D75B9B-F9E1-4D99-B054-0B5DDF790821}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21D75B9B-F9E1-4D99-B054-0B5DDF790821}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21D75B9B-F9E1-4D99-B054-0B5DDF790821}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEEB9629-B53D-482C-ABD8-96C7301242DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEEB9629-B53D-482C-ABD8-96C7301242DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEEB9629-B53D-482C-ABD8-96C7301242DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEEB9629-B53D-482C-ABD8-96C7301242DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2514676E-0FB4-431E-A690-76BBFD1F84CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2514676E-0FB4-431E-A690-76BBFD1F84CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2514676E-0FB4-431E-A690-76BBFD1F84CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2514676E-0FB4-431E-A690-76BBFD1F84CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
