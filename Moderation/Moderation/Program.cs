@@ -28,7 +28,7 @@ namespace PoliNetwork.Bot
 
         public static string GetBasePath()
         {
-            return "C:/Users/Joe Biden/RiderProjects/PoliNetworkBot/Moderation/Moderation/";
+            return AppDomain.CurrentDomain.BaseDirectory;
         }
     }
 }
