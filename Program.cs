@@ -3,7 +3,6 @@ using PoliNetwork.Telegram.Bot;
 using PoliNetwork.Telegram.Bot.Functionality;
 using PoliNetwork.Telegram.Bot.Handler;
 using PoliNetwork.Utility.ConfigurationLoader;
-using Telegram.Bot.Functionality;
 
 namespace Telegram
 {
@@ -11,15 +10,17 @@ namespace Telegram
   {
     private static async Task Main(string[] args)
     {
-      IUpdateHandler updateHandler = new ResponseOnMessageUpdateHandler();
-      IPollingErrorHandler pollingErrorHandler = new ResponseOnPollingErrorHandler();
-      IAUpdateHanlder aUpdateHanlder = new Example();
-      ITelegramBotFunctionality sendResponseOnReceivedMessage = new ResponseOnMessageFunctionality(updateHandler, pollingErrorHandler, aUpdateHanlder);
+      List<ITelegramBotFunctionality> telegramBotFunctionalities = new() {
+        new ResponseOnMessageFunctionality()
+      };
+
+      IUpdateHandler updateHandler = new DefaultUpdateHandler(telegramBotFunctionalities);
+      IPollingErrorHandler pollingErrorHandler = new DefaultPollingErrorHandler();
 
       string botToken = new JSONConfigurationLoader().LoadConfiguration(Config.APP_SETTIGNS).GetSection("Secrets:BotToken").Value!;
       TelegramBot bot = new(botToken)!;
 
-      await sendResponseOnReceivedMessage.Run(bot);
+      await bot.RunAsync(updateHandler, pollingErrorHandler);
     }
   }
 }

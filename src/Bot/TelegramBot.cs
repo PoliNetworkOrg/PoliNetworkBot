@@ -1,4 +1,7 @@
+using PoliNetwork.Telegram.Bot.Handler;
 using Telegram.Bot;
+using Telegram.Bot.Polling;
+using Telegram.Bot.Types.Enums;
 
 namespace PoliNetwork.Telegram.Bot
 {
@@ -22,5 +25,28 @@ namespace PoliNetwork.Telegram.Bot
     /// <param name="httpClient">Optional HttpClient to be used for API requests.</param>
     public TelegramBot(string token, HttpClient? httpClient = null)
         : base(token, httpClient) { }
+
+    public async Task RunAsync(Handler.IUpdateHandler updateHandler, IPollingErrorHandler pollingErrorHandler)
+    {
+      using CancellationTokenSource cts = new();
+
+      ReceiverOptions receiverOptions = new()
+      {
+        AllowedUpdates = Array.Empty<UpdateType>()
+      };
+
+      this.StartReceiving(
+          updateHandler: updateHandler.HandleUpdateAsync,
+          pollingErrorHandler: pollingErrorHandler.HandlePollingErrorAsync,
+          receiverOptions: receiverOptions,
+          cancellationToken: cts.Token
+      );
+
+      var me = await this.GetMeAsync();
+      Console.WriteLine($"Start listening for @{me.Username}\nExit via typing");
+      Console.ReadLine();
+      cts.Cancel();
+    }
   }
 }
+

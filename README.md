@@ -5,7 +5,9 @@ Codebase sperimentale per il refactoring del PoliNetwork Telegram Bot.
 1. **Helper**: restituisce la lista dei possibili comandi con la relativa descrzione
 Utilizzare un file JSON per inserire la descrizione e la stringa per chiamare il comando. All'interno dell'intera applicazione, accedere alle variabile attraverso il file JSON per ridurre l'hardcoding e non dover riscrivere le variabili in altri progetti o linguaggi di programmazione. Vedi [ConfigurationBuilder](https://learn.microsoft.com/it-it/dotnet/api/microsoft.extensions.configuration.configurationbuilder?view=dotnet-plat-ext-7.0#remarks)
 2. **SendMessageInGroup**: inoltrare un dato messaggio in un dato gruppo
-3. ...
+3. Le altre funzionalità presenti nel bot...
+4. Handler delle funzionalità.
+5. Policy per il controllo delle forbidden words: algoritmo per il confronto (rimuovere spazi, convertire cifre con lettere simili etc.)
 
 ## Logistica ricezione messaggi:
 1. Il messaggio viene inoltrato dall'utente.
