@@ -28,7 +28,7 @@ namespace PoliNetwork.Bot
 
         public static string GetBasePath()
         {
-            return AppDomain.CurrentDomain.BaseDirectory;
+            return Directory.GetParent(Environment.CurrentDirectory).FullName;
         }
     }
 }
