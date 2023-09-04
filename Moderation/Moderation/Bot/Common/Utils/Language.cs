@@ -5,7 +5,7 @@ using System.Linq;
 
 #endregion
 
-namespace PoliNetwork.Telegram.Bot.Functionalities.Messages;
+namespace PoliNetwork.Common.Utils;
 
 public class Language
 {

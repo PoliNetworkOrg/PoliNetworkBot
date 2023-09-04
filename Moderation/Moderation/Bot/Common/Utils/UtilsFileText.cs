@@ -5,7 +5,7 @@ using PoliNetwork.Common.Enums;
 
 #endregion
 
-namespace PoliNetwork.Telegram.Bot.Functionalities.Messages;
+namespace PoliNetwork.Common.Utils;
 
 internal static class UtilsFileText
 {

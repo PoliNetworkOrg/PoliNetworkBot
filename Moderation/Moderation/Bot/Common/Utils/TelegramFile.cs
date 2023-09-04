@@ -11,7 +11,7 @@ using TLSharp.Core.Utils;
 
 #endregion
 
-namespace PoliNetwork.Telegram.Bot.Functionalities.Messages;
+namespace PoliNetwork.Common.Utils;
 
 public class TelegramFile : GenericFile
 {
@@ -49,7 +49,7 @@ public class TelegramFile : GenericFile
         var streamReader = new StreamReader(_stream);
         var r = await client.UploadFile(_fileName, streamReader);
 
-        var attributes = new TLVector<TLAbsDocumentAttribute>();
+        var attributes = new List<TLAbsDocumentAttribute>();
         TLAbsDocumentAttribute att1 = new TLDocumentAttributeFilename { FileName = _fileName };
         attributes.Add(att1);
         return r switch
