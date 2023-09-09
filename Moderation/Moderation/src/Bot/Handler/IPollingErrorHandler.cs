@@ -1,9 +1,6 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Telegram.Bot;
 
-namespace PoliNetwork.Telegram.Bot.Handler
+namespace Moderation.Bot.Handler
 {
     /// <summary>
     /// Represents an interface for handling errors that occur during the polling process of a Telegram bot.

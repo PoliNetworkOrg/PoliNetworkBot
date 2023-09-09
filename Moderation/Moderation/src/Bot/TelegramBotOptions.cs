@@ -1,6 +1,6 @@
 using Telegram.Bot;
 
-namespace PoliNetwork.Telegram.Bot
+namespace Moderation.Bot
 {
   /// <summary>
   /// Represents options for configuring a <see cref="TelegramBot"/>.

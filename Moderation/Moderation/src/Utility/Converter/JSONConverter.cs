@@ -1,5 +1,6 @@
-using System.Runtime.InteropServices;
 using Newtonsoft.Json;
+
+namespace Moderation.Utility.Converter;
 
 class JSONConverter
 {

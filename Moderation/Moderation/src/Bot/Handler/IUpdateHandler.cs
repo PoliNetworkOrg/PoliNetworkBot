@@ -1,8 +1,7 @@
-
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace PoliNetwork.Telegram.Bot.Handler
+namespace Moderation.Bot.Handler
 {
     /// <summary>
     /// Represents an interface for handling incoming Telegram updates.

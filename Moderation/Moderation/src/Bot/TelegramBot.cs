@@ -1,10 +1,9 @@
-using PoliNetwork.Telegram.Bot.Handler;
+using Moderation.Bot.Handler;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
-using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
-namespace PoliNetwork.Telegram.Bot
+namespace Moderation.Bot
 {
   /// <summary>
   /// Represents a Telegram bot that can interact with the Telegram Bot API.

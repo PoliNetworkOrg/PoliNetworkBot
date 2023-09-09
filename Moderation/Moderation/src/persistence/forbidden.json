@@ -1,0 +1,10 @@
+{
+  "forbidden_words": [
+    "forbidden",
+    "wor.s"
+  ],
+  "forbidden_domains": [
+    "forbidden.com",
+    "forbidden.org"
+  ]
+}

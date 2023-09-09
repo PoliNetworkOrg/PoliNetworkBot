@@ -1,4 +1,4 @@
-namespace PoliNetwork.Utility.Configuration
+namespace Moderation
 {
     public static class Config
     {

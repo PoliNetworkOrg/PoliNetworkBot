@@ -1,7 +1,7 @@
-using Microsoft.Extensions.Configuration;
 using System.Text.Json;
+using Microsoft.Extensions.Configuration;
 
-namespace PoliNetwork.Utility.ConfigurationLoader
+namespace Moderation.Utility.ConfigurationLoad
 {
     /// <summary>
     /// Represents a configuration loader for loading JSON configuration data.

@@ -1,8 +1,9 @@
-using PoliNetwork.Telegram.Bot.Functionality;
+using Moderation.Bot.Functionality;
+using Moderation.Bot.Functionality.Generic;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace PoliNetwork.Telegram.Bot.Handler
+namespace Moderation.Bot.Handler.Default
 {
   public class DefaultUpdateHandler : IUpdateHandler
   {

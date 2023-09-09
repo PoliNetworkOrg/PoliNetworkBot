@@ -1,10 +1,10 @@
-using PoliNetwork.Telegram.Bot.Functionality;
-using PoliNetwork.Utility.Configuration;
-using PoliNetwork.Utility.MessageContentControl;
+using Moderation.Bot.Functionality.Generic;
+using Moderation.Utility.Converter;
+using Moderation.Utility.MessageContentControl;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace Moderation.Bot.Functionality.Example
+namespace Moderation.Bot.Functionality.Implementations.Example
 {
   public class ResponseOnMessageFunctionality : AbstractTelegramBotFunctionality
   {

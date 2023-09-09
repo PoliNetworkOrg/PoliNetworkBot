@@ -1,7 +1,7 @@
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 
-namespace PoliNetwork.Telegram.Bot.Handler
+namespace Moderation.Bot.Handler.Default
 {
   public class DefaultPollingErrorHandler : IPollingErrorHandler
   {

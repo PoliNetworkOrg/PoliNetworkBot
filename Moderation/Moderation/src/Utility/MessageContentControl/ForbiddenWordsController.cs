@@ -1,4 +1,4 @@
-namespace PoliNetwork.Utility.MessageContentControl;
+namespace Moderation.Utility.MessageContentControl;
 
 public sealed class ForbiddenWordsController
 {

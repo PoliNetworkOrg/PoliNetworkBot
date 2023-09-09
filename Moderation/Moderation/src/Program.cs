@@ -1,11 +1,12 @@
-﻿using Moderation.Bot.Functionality.Example;
-using PoliNetwork.Telegram.Bot;
-using PoliNetwork.Telegram.Bot.Functionality;
-using PoliNetwork.Telegram.Bot.Handler;
-using PoliNetwork.Utility.ConfigurationLoader;
-using PoliNetwork.Utility.Configuration;
+﻿using Moderation.Bot;
+using Moderation.Bot.Functionality;
+using Moderation.Bot.Functionality.Generic;
+using Moderation.Bot.Functionality.Implementations.Example;
+using Moderation.Bot.Handler;
+using Moderation.Bot.Handler.Default;
+using Moderation.Utility.ConfigurationLoad;
 
-namespace PoliNetwork.Moderation
+namespace Moderation
 {
     internal abstract class Program
     {

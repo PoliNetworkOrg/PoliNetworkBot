@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-namespace PoliNetwork.Utility.ConfigurationLoader
+namespace Moderation.Utility.ConfigurationLoad
 {
     /// <summary>
     /// Represents an interface for loading configuration data from various sources.
