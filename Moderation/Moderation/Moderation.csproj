@@ -15,24 +15,29 @@
     </ItemGroup>
     
     <ItemGroup>
-        <ProjectReference Include="Lib_CSharp\PoliNetwork.Core\src\PoliNetwork.Core.csproj"/>
-        <ProjectReference Include="Lib_CSharp\PoliNetwork.Db\src\PoliNetwork.Db.csproj"/>
-        <ProjectReference Include="Lib_CSharp\PoliNetwork.Telegram\src\PoliNetwork.Telegram.csproj"/>
+        <ProjectReference Include="Lib_CSharp\PoliNetwork.Core\src\PoliNetwork.Core.csproj" />
+        <ProjectReference Include="Lib_CSharp\PoliNetwork.Db\src\PoliNetwork.Db.csproj" />
+        <ProjectReference Include="Lib_CSharp\PoliNetwork.Telegram\src\PoliNetwork.Telegram.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Remove="Lib_CSharp\**"/>
-        <Compile Remove="static\**"/>
+        <Compile Remove="Lib_CSharp\**" />
+        <Compile Remove="static\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Remove="Lib_CSharp\**"/>
-        <EmbeddedResource Remove="static\**"/>
+        <EmbeddedResource Remove="Lib_CSharp\**" />
+        <EmbeddedResource Remove="static\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Lib_CSharp\**"/>
-        <None Remove="static\**"/>
-        <None Remove="Dockerfile"/>
+        <None Remove="Lib_CSharp\**" />
+        <None Remove="static\**" />
+        <None Remove="Dockerfile" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
     </ItemGroup>
 </Project>
