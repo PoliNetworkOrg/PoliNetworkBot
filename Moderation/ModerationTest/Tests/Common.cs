@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using PoliNetwork.Moderation;
 using PoliNetwork.Telegram.Bot.Bots;
 
 
@@ -38,11 +39,5 @@ namespace ModerationTest.Tests
         }
     }
 
-    public class HelloWorld
-    {
-        public string SayHello()
-        {
-            return "Hello, World!";
-        }
-    }
+    
 }
