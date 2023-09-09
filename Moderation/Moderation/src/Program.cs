@@ -1,6 +1,6 @@
-﻿using PoliNetwork.Telegram.Bot;
+﻿using Moderation.Bot.Functionality.Example;
+using PoliNetwork.Telegram.Bot;
 using PoliNetwork.Telegram.Bot.Functionality;
-using PoliNetwork.Telegram.Bot.Functionality.Example;
 using PoliNetwork.Telegram.Bot.Handler;
 using PoliNetwork.Utility.ConfigurationLoader;
 using PoliNetwork.Utility.Configuration;
