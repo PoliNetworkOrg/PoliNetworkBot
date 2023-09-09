@@ -1,9 +1,10 @@
+using PoliNetwork.Telegram.Bot.Functionality;
 using PoliNetwork.Utility.Configuration;
+using PoliNetwork.Utility.MessageContentControl;
 using Telegram.Bot;
 using Telegram.Bot.Types;
-using PoliNetwork.Utility.MessageContentControl;
 
-namespace PoliNetwork.Telegram.Bot.Functionality.Example
+namespace Moderation.Bot.Functionality.Example
 {
   public class ResponseOnMessageFunctionality : AbstractTelegramBotFunctionality
   {
@@ -23,10 +24,10 @@ namespace PoliNetwork.Telegram.Bot.Functionality.Example
       var username = message.Chat.Username;
 
       var forbiddenWords = CreateForbiddenWordsArray();
-      var HasForbiddenWord = new ForbiddenWordsController(forbiddenWords).ContainsForbiddenWord(messageText);
+      var hasForbiddenWord = new ForbiddenWordsController(forbiddenWords).ContainsForbiddenWord(messageText);
 
       var serverPrompt = $"Received a '{messageText}' message in chat {chatId} ({username}).";
-      var responseText = HasForbiddenWord ? "Your massage contains a forbidden word" : "Your message is a valid one";
+      var responseText = hasForbiddenWord ? "Your massage contains a forbidden word" : "Your message is a valid one";
       Console.WriteLine(serverPrompt);
 
       var sentMessage = await bot.SendTextMessageAsync(
