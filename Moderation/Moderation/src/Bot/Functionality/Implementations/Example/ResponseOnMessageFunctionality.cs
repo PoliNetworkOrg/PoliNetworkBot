@@ -1,6 +1,7 @@
 using Moderation.Bot.Functionality.Generic;
 using Moderation.Utility.Converter;
 using Moderation.Utility.MessageContentControl;
+using PoliNetwork.Telegram.Bot.Bots;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
@@ -14,7 +15,7 @@ namespace Moderation.Bot.Functionality.Implementations.Example
       return JSONConverter.GetArrayFromFile(path) ?? Array.Empty<string>();
     }
 
-    public override async Task RunAsync(ITelegramBotClient bot, Update update, CancellationToken cancellationToken)
+    public override async Task RunAsync(AbstractTelegramBot bot, Update update, CancellationToken cancellationToken)
     {
       /* This way we only process the message text part */
       if (update.Message is not { } message) return;
