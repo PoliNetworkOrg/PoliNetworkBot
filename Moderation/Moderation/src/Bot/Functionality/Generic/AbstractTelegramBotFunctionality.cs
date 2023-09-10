@@ -1,3 +1,4 @@
+using PoliNetwork.Telegram.Bot.Bots;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
@@ -15,5 +16,5 @@ namespace Moderation.Bot.Functionality.Generic
     /// <param name="update"></param>
     /// <param name="cancellationToken"></param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-    public abstract Task RunAsync(ITelegramBotClient bot, Update update, CancellationToken cancellationToken);  }
+    public abstract Task RunAsync(AbstractTelegramBot bot, Update update, CancellationToken cancellationToken);  }
 }

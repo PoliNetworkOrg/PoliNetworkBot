@@ -1,3 +1,4 @@
+using PoliNetwork.Telegram.Bot.Bots;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
@@ -15,6 +16,6 @@ namespace Moderation.Bot.Handler
         /// <param name="update">The <see cref="Update"/> representing the incoming update to be handled.</param>
         /// <param name="cancellationToken">A <see cref="CancellationToken"/> that can be used to cancel the asynchronous operation.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-        Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken);
+        Task HandleUpdateAsync(AbstractTelegramBot botClient, Update update, CancellationToken cancellationToken);
     }
 }

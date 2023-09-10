@@ -1,0 +1,22 @@
+﻿{
+  "owners": {
+    "name": "John Doe",
+    "username": "",
+    "id": 1234
+  },
+  "creators": {
+    "name": "John Doe",
+    "username": "",
+    "id": 1234
+  },
+  "admins": {
+    "name": "John Doe",
+    "username": "",
+    "id": 1234
+  },
+  "moderators": {
+    "name": "John Doe",
+    "username": "",
+    "id": 1234
+  }
+}
